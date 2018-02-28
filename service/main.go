@@ -127,8 +127,8 @@ func saveToBT(p *Post, id string) {
 	mut := bigtable.NewMutation()
 	t := bigtable.Now()
 
-	mut.Set("post", "user", t, []byte("p.User"))
-	mut.Set("post", "message", t, []byte("p.Message"))
+	mut.Set("post", "user", t, []byte(p.User))
+	mut.Set("post", "message", t, []byte(p.Message))
 	mut.Set("location", "lat", t, []byte(strconv.FormatFloat(p.Location.Lat, 'f', -1, 64)))
 	mut.Set("location", "lon", t, []byte(strconv.FormatFloat(p.Location.Lon, 'f', -1, 64)))
 	err = tbl.Apply(ctx, id, mut)
